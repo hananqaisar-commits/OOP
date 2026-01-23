@@ -31,16 +31,21 @@ using namespace std;
             int add(int a ,int b){ return a+b;}//int a and int b 
             float mult(int a, float b){return a*b;}//herer int a nad float b parameter are different
             float div(float a,float b){return a/b;}//float a and float b they are different parameter
-    };
-    
+    }; 
+
+//Operator overloading:
+     
+
+
 int main(){
-calculator c1;
+    calculator c1;
     done(10);
     done("Hanan Qaisar");
     done();
 
     cout<<c1.div(8,5)<<endl;
-    cout<<c1.div(13,5.2)<<endl;
+    cout<<c1.mult(13,5.2)<<endl;
 
     return 0;
+    
 }
