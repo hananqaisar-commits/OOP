@@ -29,46 +29,37 @@ void TollBooth ::nopaycar()
 }
 void TollBooth ::Display()
 {
+    cout << "\n===== Toll Booth Report =====\n";
     cout << "Total cars: " << totalcars << endl;
     cout << "Total cash: " << totalcash << endl;
 }
 int main()
 {
     TollBooth tool;
-    char Carch[10];
+    char choice;
     cout << "Enter choice " << endl
-         << "p for count a paying car" << endl
+         << "P = count a paying car" << endl
          <<
 
-        "n for count a non-paying car" << endl
+        "N = count a non-paying car" << endl
          <<
 
-        "e for exit program and show totals" << endl;
-
-    for (int i = 0; i < 10; i++)
+        "E for exit program and show Report" << endl;
+    cin >> choice;
+    do
     {
-        cin >> Carch[i];
-    }
-
-    for (int i = 0; i < 10; i++)
-    {
-        if (Carch[i] == 'P' || Carch[i]=='p')
+        if (choice == 'P' || choice == 'p')
         {
             tool.payingcar();
         }
-        else if (Carch[i] == 'N' || Carch[i]== 'n')
+        else if (choice == 'N' || choice == 'n')
         {
             tool.nopaycar();
         }
-        else if (Carch[i] == 'E' || Carch[i]== 'e')
-        {
-            break;
-        }
-        else
-        {
-            continue;
-        }
-    }
+        
+        cout << "Enter next car: " << endl;
+        cin >> choice;
+    } while (choice != 'e' && choice != 'E');
     tool.Display();
 
     return 0;
