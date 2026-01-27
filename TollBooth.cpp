@@ -29,7 +29,7 @@ void TollBooth ::nopaycar()
 }
 void TollBooth ::Display()
 {
-    cout << "\n===== Toll Booth Report =====\n";
+    cout << "\n====== Toll Booth Report ======\n";
     cout << "Total cars: " << totalcars << endl;
     cout << "Total cash: " << totalcash << endl;
 }
@@ -56,7 +56,6 @@ int main()
         {
             tool.nopaycar();
         }
-        
         cout << "Enter next car: " << endl;
         cin >> choice;
     } while (choice != 'e' && choice != 'E');
