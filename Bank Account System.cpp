@@ -4,9 +4,10 @@ using namespace std;
 
 class Account
 {
-    string accountNumber = "HQ1493"; // by default it will be 0 if i will not explicitly change it before main programme
-    string holderName = "Hanan Qaisar";
-    double balance = 0;
+
+    string accountNumber; // by default it will be 0 if i will not explicitly change it before main programme
+    string holderName;
+    double balance;
 
 public:
     Account(string accountNumber, string holderName, double balance) // constructor
@@ -16,12 +17,13 @@ public:
         this->balance = balance;
     }
 
-    static int countAcoount;
+    static int countAcoount; // by default it will be 0 if i will not explicitly change it before main programme
+
     virtual void deposit();
     virtual void withdraw();
     virtual void display();
     virtual int calculateIntrest();
-    virtual ~Account(){} // virtual destructor
+    virtual ~Account() {} // virtual destructor
 };
 
 class SavingAccounts : public Account
@@ -29,11 +31,10 @@ class SavingAccounts : public Account
     int intrestRate = 11;
 
 public:
-    SavingAccounts(string accountNumber, string holderName, double balance, int intrestRate) : Account(accountNumber, holderName, balance, intrestRate)
+    SavingAccounts(string accountNumber, string holderName, double balance, int intrestRate) : Account(accountNumber, holderName, balance)
     {
         this->intrestRate = intrestRate;
     }
-
 };
 class CurrentAccount : public Account
 {
@@ -44,34 +45,42 @@ public:
 void Account::deposit()
 {
     int depositAmount;
-    cout<<"Enter amount to deposit: ";
-    cin>>depositAmount;
+    cout << "Enter amount to deposit: ";
+    cin >> depositAmount;
     if (depositAmount > 0)
     {
         cout << depositAmount << " rupees deposit sucessfully" << endl;
     }
-    else{
-        cout<<"Transaction failed"<<endl;
+    else
+    {
+        balance += depositAmount;
+        cout << "Transaction failed" << endl;
     }
 }
-void Account::withdraw() 
+void Account::withdraw()
 {
     int withdrawAmount;
-    if (withdrawAmount<balance)
+    cout << "Enter amount to withdraw: ";
+    cin >> withdrawAmount;
+    if (withdrawAmount < balance)
     {
-        cout<<withdrawAmount<<" rupees withdraw sucessfully"<<endl;
+        balance -= withdrawAmount;
+        cout << withdrawAmount << " rupees withdraw sucessfully" << endl;
     }
-    else{
-        cout<<"Balance is not available"<<endl;
+    else
+    {
+        cout << "Balance is not available" << endl;
     }
 }
-void Account::display() 
+void Account::display()
 {
+    cout<<"\nTotal Account exists: "<<countAcoount<<endl;
     cout << "Acount owner is: " << holderName << endl;
     cout << "Acount id is: " << accountNumber << endl;
     cout << "Available balance is: " << balance << endl;
+
 }
-int Account::calculateIntrest() 
+int Account::calculateIntrest()
 {
     float intrest;
     intrest = balance * 0.11;
