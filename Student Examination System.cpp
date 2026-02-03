@@ -14,7 +14,7 @@ public:
 void Student ::inputDetail()
 {
     cin.ignore();
-    cout << "Enter student name: ";
+    cout << "\nEnter student name: ";
     getline(cin, name);
     cout << "Enter roll number: ";
     cin >> rollNumber;
@@ -126,8 +126,17 @@ int main()
         else
         {
             cout << "You type wrong number of subjects" << endl
-                 << "Programme end..." << endl;
-            return 0;
+                 << "Choose correct number of subject" << endl;
+            if (i == 0)
+            {
+                i = 0;
+            }
+            else
+            {
+                --i;
+            }
+
+            continue;
         }
         perc = student[i].percentage(subNum); // float retun value which is store in perc and passing subNum which is enterd by user 3 or 5
         student[i].displayAll(perc);          // perc is percentage like 76.45 something
