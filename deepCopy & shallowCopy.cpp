@@ -1,10 +1,45 @@
 #include <iostream>
-#include<string>
+#include <string>
 using namespace std;
 
-int main() {
+class Student
+{
+    int id;
+    string name;
+    int *marks; // it create pointer which is pointing in memory randomly
+
+public:
+    Student(int id, string name, int markptr)
+    {
+        this->id = id;
+        this->name = name;
+        this->marks = new int(markptr); // in this line i have declared *marks already no i am assinging new int in heap to it and passing value is markptr
+    }
+    Student(Student &s1)
+    {
+        id = s1.id;
+        name = s1.name;
+        marks = s1.marks;
+    }
+
+    void display();
+};
+void Student ::display()
+{
+    cout << "===Details===\n";
+    cout << "Name is: " << name << endl;
+    cout << "ID is: " << id << endl;
+    cout << "Marks is: " << marks << endl;
+}
+
+int main()
+{
+    
+    Student s1(187, "Hanan Qaisar", 90);
+    Student s2(s1);
+    s1.display();
+    s2.display();
 
     
-
     return 0;
 }
