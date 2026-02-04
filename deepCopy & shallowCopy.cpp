@@ -34,7 +34,6 @@ void Student ::display()
 
 int main()
 {
-
     Student s1(187, "Hanan Qaisar", 90);
     Student s2(s1);
     s1.display();
