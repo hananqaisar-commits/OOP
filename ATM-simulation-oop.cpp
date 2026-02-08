@@ -253,13 +253,14 @@ int main()
         }
         else
         {
-            cout << "\n====ATM DISPLAY====\n";
-            cout << "Choose option:" << endl
-                 << "1. Deposit" << endl
-                 << "2. Withdraw" << endl
-                 << "3. Check Balabnce" << endl
-                 << "4. Display detail" << endl
-                 << "0. End" << endl;
+            cout << "|==================|\n";
+            cout << "|     ATM MENU     |\n";
+            cout << "|==================|\n";
+            cout << "| 1. Deposit       |\n";
+            cout << "| 3. Check Balance |\n";
+            cout << "| 4. Display Info  |\n";
+            cout << "| 0. Exit          |\n";
+            cout << "|==================|\n";
             cout << "-> ";
 
             do
