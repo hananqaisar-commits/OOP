@@ -301,11 +301,15 @@ void BankAccount ::changePin()
     {
         cout << "Enter last pin: ";
         cin >> checkPin;
-
-        pin = checkPin;
+        if (checkPin == pin)
+        {
+            pin = checkPin;
+            
+        }
     }
     else
     {
+        cout << "Process cancel" << endl;
         return;
     }
 }
