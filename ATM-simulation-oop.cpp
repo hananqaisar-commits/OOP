@@ -38,17 +38,18 @@ public:
     int insertCard();
     void loader_dot();
     void loader_dot_percentage();
+    void transferFunds();
 };
 void BankAccount ::loader_dot()
 {
     int count = 0;
-    srand(time(NULL));
-    count = (rand() % 5 + 1); // range 1-5
+    srand(time(0));
+    count = (rand() % 3 + 1); // range 1-3
     cout << "Processing, please wait ";
 
-    for (int i = 0; i < count; i++) // max will be 4 and min will be 1
+    for (int i = 0; i < count; i++) // max will be 3 and min will be 1
     {
-        for (int j = 0; j < 5; j++)
+        for (int j = 0; j < 6; j++)
         {
             cout << ".";
             Sleep(250);
@@ -72,7 +73,7 @@ void BankAccount ::loader_dot_percentage()
         for (int j = 0; j < 4; j++)
         {
             cout << load[j];
-            Sleep(250);
+            Sleep(350); // it mean 0.35 second
             cout << "\b";
             cout << " ";  // it overwrite the 6 backspaces.It help me erace previous 6 dots.
             cout << "\b"; // now it move back to 6 spaces again for next animation
@@ -103,7 +104,7 @@ void BankAccount ::withdraw(int withdraw)
     loader_dot();
     if (withdraw > balance)
     {
-        cout << "Sorry! " << withdraw << " rupees is not in your account" << endl;
+        cout << "Sorry! " << withdraw << " rupees is not in your account\nInsufficient Balance" << endl;
     }
     else if (withdraw < balance && withdraw > 0 || withdraw == balance)
     {
@@ -204,6 +205,10 @@ void BankAccount ::choice(int n)
         display();
         break;
 
+    case 5:
+        transferFunds();
+        break;
+
     default:
         cout << "Enter valid choice" << endl;
     }
@@ -211,7 +216,7 @@ void BankAccount ::choice(int n)
 int BankAccount ::insertCard()
 {
     int insert;
-    cout << "=====Welcome to ATM=====\nInsert your card" << endl;
+    cout << "<<========Welcome to ATM========>>\nInsert your card" << endl;
     cout << "1 for insert card\n0 for nothing" << endl;
     cout << "->";
     cin >> insert;
@@ -231,6 +236,51 @@ int BankAccount ::insertCard()
         return 0;
     }
 }
+void BankAccount ::transferFunds()
+{
+
+    int amount;
+    string account;
+    char ch;
+
+    cout << "Enter receiver Account number: ";
+    cin >> account;
+
+    cout << "Enter amount: ";
+    cin >> amount;
+
+    cout << "\n";
+
+    cout << "confirm details: " << endl;
+    cout << "Receiver account number: " << account << endl;
+    cout << "Amount is " << amount << endl;
+
+    cout << "Confirm transfer (y/n)?" << endl;
+    cin >> ch;
+    if (amount <= balance)
+    {
+        if (ch == 'y' || ch == 'Y')
+        {
+            loader_dot();
+            if (amount > 50000)
+            {
+                balance = (amount * 0.03) + 60; // deduct tax 3 percent if amount is grater then 50,000
+            }
+            balance = (balance - amount) + 60; // deduct amout from sender
+            // here i have also add amount to user
+            // then transaction must have to save for record
+            cout << "Transfer Sucessful" << endl;
+        }
+        else if (ch == 'n' || ch == 'N')
+        {
+            return;
+        }
+    }
+    else
+    {
+        cout << "Insufficient Amount" << endl;
+    }
+}
 int main()
 {
     int choice;
@@ -247,16 +297,19 @@ int main()
             cout << "|     ATM MENU     |\n";
             cout << "|==================|\n";
             cout << "| 1. Deposit       |\n";
+            cout << "| 2. Withdraw      |\n";
             cout << "| 3. Check Balance |\n";
             cout << "| 4. Display Info  |\n";
+            cout << "| 5. Transactions  |\n";
             cout << "| 0. Exit          |\n";
+            cout << "|                  |\n";
             cout << "|==================|\n";
             cout << "-> ";
 
             do
             {
                 cin >> choice;
-                if (choice < 0 || choice > 4)
+                if (choice < 0 || choice > 5)
                 {
                     cout << "Enter valid Choice" << endl;
                 }
