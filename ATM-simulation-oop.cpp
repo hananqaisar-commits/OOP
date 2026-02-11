@@ -17,7 +17,7 @@ class BankAccount
     int pin;
     int accNo;
     string name;
-    int balance;
+    unsigned long long int balance;
     int chance;
 
 public:
@@ -39,6 +39,7 @@ public:
     void loader_dot();
     void loader_dot_percentage();
     void transferFunds();
+    void changePin();
 };
 void BankAccount ::loader_dot()
 {
@@ -209,6 +210,10 @@ void BankAccount ::choice(int n)
         transferFunds();
         break;
 
+    case 6:
+        changePin();
+        break;
+
     default:
         cout << "Enter valid choice" << endl;
     }
@@ -284,6 +289,26 @@ void BankAccount ::transferFunds()
         cout << "Insufficient Amount" << endl;
     }
 }
+
+void BankAccount ::changePin()
+{
+    char ch;
+    int checkPin;
+
+    cout << "Want to change pin (y/n)?";
+    cin >> ch;
+    if (ch == 'y' || ch == 'Y')
+    {
+        cout << "Enter last pin: ";
+        cin >> checkPin;
+
+        pin = checkPin;
+    }
+    else
+    {
+        return;
+    }
+}
 int main()
 {
     int choice;
@@ -305,15 +330,15 @@ int main()
             cout << "| 3. Check Balance |\n";
             cout << "| 4. Display Info  |\n";
             cout << "| 5. Transactions  |\n";
+            cout << "| 6. Change Pin   |\n";
             cout << "| 0. Exit          |\n";
-            cout << "|                  |\n";
             cout << "|==================|\n";
             cout << "-> ";
 
             do
             {
                 cin >> choice;
-                if (choice < 0 || choice > 5)
+                if (choice < 0 || choice > 6)
                 {
                     cout << "Enter valid Choice" << endl;
                 }
