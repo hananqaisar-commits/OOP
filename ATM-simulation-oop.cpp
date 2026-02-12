@@ -10,6 +10,7 @@
 #include <windows.h> //for Sleep use in my programme
 #include <stdlib.h>
 #include <time.h>
+#include <ctime>
 
 using namespace std;
 class BankAccount
@@ -316,10 +317,11 @@ void BankAccount ::changePin()
         {
             cout << "Enter new pin: ";
             cin >> new_pin;
-
             lastDigit = new_pin % 10;
             pin = new_pin;
-            cout << "Pin is sucessfully changed\nPin is changed at time " << timeGetSystemTime << endl;
+
+            time_t now = time(0); // this is to use current time in my code
+            cout << "Pin is sucessfully changed\nPin is changed at time " << ctime(&now) << endl;
             cout << "New pin is ***" << lastDigit << endl;
             return;
         }
