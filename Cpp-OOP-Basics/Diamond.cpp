@@ -25,7 +25,7 @@ int main()
 
     for (int i = number; i >= 1; i--)
     {
-        for (int k = number - 1; k > i; k--)
+        for (int k = number - 1; k < i; k++)
         {
             cout << " ";
         }
