@@ -353,15 +353,14 @@ void BankAccount ::changePin()
         return;
     }
 }
+
 int main()
 {
     int choice;
-
-    int pin1 = 1234;
-
+    int hashedPin1 = 1234;
     string name1 = "Hanan Qaisar";
-
-    BankAccount account1(1199, name1, 0, pin1, 3);
+    // hashedPin(hashedPin1);
+    BankAccount account1(1199, name1, 0, hashedPin1, 3);
 
     if (account1.insertCard())
     {
